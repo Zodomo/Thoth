@@ -20,7 +20,7 @@ contract TwoPartyContract {
   mapping(address => 
     mapping(address => 
     mapping(string => 
-    mapping(uint256 => bytes32)))) twoPartyContracts;
+    mapping(uint256 => bytes32)))) public twoPartyContracts;
 
   // what should we do on deploy?
   constructor() {
@@ -53,11 +53,11 @@ contract TwoPartyContract {
   // Sign all relevant contract data and return signature
   // Use of validParty requires contract to be created before being signable
   function signContract(address _counterParty, string memory _ipfsHash, uint256 _blockNum) public validParty(_counterParty, _ipfsHash, _blockNum) returns (bytes32) {
-    twoPartyContracts[msg.sender][_counterParty][_ipfsHash][block.number] = getEthSignedMessageHash(getMessageHash(msg.sender, _counterParty, _ipfsHash, _blockNum));
-    return twoPartyContracts[msg.sender][_counterParty][_ipfsHash][block.number];
+    twoPartyContracts[msg.sender][_counterParty][_ipfsHash][_blockNum] = getEthSignedMessageHash(getMessageHash(msg.sender, _counterParty, _ipfsHash, _blockNum));
+    return twoPartyContracts[msg.sender][_counterParty][_ipfsHash][_blockNum];
   }
 
-  function splitSignature(bytes32 _signature) public pure returns (bytes32 r, bytes32 s, uint8 v) {
+  function splitSignature(bytes memory _signature) public pure returns (bytes32 r, bytes32 s, uint8 v) {
     require(_signature.length == 65, "Invalid signture length");
     assembly {
       // mload(p) loads next 32 bytes starting at memory address p into memory
@@ -69,31 +69,32 @@ contract TwoPartyContract {
     // assembly implicitly returns (r, s, v)
   }
 
-  function recoverSigner(bytes32 _ethSignedMessageHash, bytes32 _signature) public pure returns (address) {
+  function recoverSigner(bytes32 _ethSignedMessageHash, bytes memory _signature) public pure returns (address) {
     (bytes32 r, bytes32 s, uint8 v) = splitSignature(_signature);
     return ecrecover(_ethSignedMessageHash, v, r, s); // Recovers original signer from _ethSignedMessageHash and post-split _signature
   }
 
-  function verifySignature(address _signer, address _counterParty, string memory _ipfsHash, uint256 _blockNum, bytes32 _signature) public pure returns (bool) {
+  function verifySignature(address _signer, address _counterParty, string memory _ipfsHash, uint256 _blockNum, bytes memory _signature) public pure returns (bool) {
     bytes32 messageHash = getMessageHash(_signer, _counterParty, _ipfsHash, _blockNum);
     bytes32 ethSignedMessageHash = getEthSignedMessageHash(messageHash);
     return recoverSigner(ethSignedMessageHash, _signature) == _signer;
   }
 
   // Instantiate two party contract with (msg.sender, counterparty address, IPFS hash of the contract document, current block number) and sign it
-  function createTwoPartyContract(address _counterParty, string memory _ipfsHash) public {
-    require(bytes32(twoPartyContracts[msg.sender][_counterParty][_ipfsHash][block.number]).length == 0, "Contract instance already signed");
+  function createTwoPartyContract(address _counterParty, string memory _ipfsHash) public returns (uint256) {
+    require(bytes32(twoPartyContracts[msg.sender][_counterParty][_ipfsHash][block.number]) == 0, "Contract instance already signed");
     twoPartyContracts[msg.sender][_counterParty][_ipfsHash][block.number] = bytes32("1");
     signContract(_counterParty, _ipfsHash, block.number);
     // Need to instantiate signature field for counterparty to pass validParty check
     twoPartyContracts[_counterParty][msg.sender][_ipfsHash][block.number] = bytes32("1"); 
+    return block.number;
   }
   
-  function executeContract(address _counterParty, string memory _ipfsHash, uint256 _blockNum) public validParty(_counterParty, _ipfsHash, _blockNum) {
+  //function executeContract(address _counterParty, string memory _ipfsHash, uint256 _blockNum) public validParty(_counterParty, _ipfsHash, _blockNum) {
     // Emit something representing contract signed by all parties
     // Will require logic confirming all signatories defined in Contract struct have signed
     // Maybe integrate payment logic
-  }
+  //}
 
   // payment handling functions if we need them, otherwise just accept and allow withdrawal
   function withdraw() public onlyOwner {
