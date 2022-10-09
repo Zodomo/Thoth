@@ -77,4 +77,10 @@ Launched initially on CANTO thanks to the CANTO Hackathon, THOTH allows two
 terms that cannot be directly included in smart contracts because of their
 size, uncertainty, or incompatibility with the EVM.
 
-Users can bring any contract in PDF form to THOTH to be bound.  
+Users can bring any contract in PDF form to THOTH to be bound. This can be
+provided by one party's lawyer, custom written by the parties, or selected
+from an external leal repository such as OpenLaw (https://www.openlaw.io/).
+
+<b>THOTH and its developers can provide no legal advice or opinions as to
+  the legality of any contracts agreed to and executed on THOTH. Use of and
+  reliance of THOTH is entirely at the user's risk.</b>
