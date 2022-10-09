@@ -79,7 +79,11 @@ size, uncertainty, or incompatibility with the EVM.
 
 Users can bring any contract in PDF form to THOTH to be bound. This can be
 provided by one party's lawyer, custom written by the parties, or selected
-from an external leal repository such as OpenLaw (https://www.openlaw.io/).
+from an external legal repository such as OpenLaw (https://www.openlaw.io/).
+
+Ultimately, THOTH uploads the agreement to IPFS, and prompts the signatories
+to execute the agreement. Upon completion by all signatories, the fully
+executed agreement is [insert mechanic].
 
 <b>THOTH and its developers can provide no legal advice or opinions as to
   the legality of any contracts agreed to and executed on THOTH. Use of and
