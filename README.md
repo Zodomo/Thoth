@@ -72,5 +72,9 @@
 
 THOTH is crypto's first protocol that utilizes the internal cryptography in
 Etehereum's EVM to bind real world parties to legally binding agreements.
-Launched initially on CANTO thanks to the CANTO Hackathon, THOTH is a blending
-of 
+Launched initially on CANTO thanks to the CANTO Hackathon, THOTH allows two 
+(or more) parties to bind themselves into a legal agreement that includes
+terms that cannot be directly included in smart contracts because of their
+size, uncertainty, or incompatibility with the EVM.
+
+Users can bring any contract in PDF form to THOTH to be bound.  
