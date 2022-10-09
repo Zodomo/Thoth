@@ -11,7 +11,7 @@ import Address from "./Address";
 
   <Events
     contracts={readContracts}
-    contractName="YourContract"
+    contractName="TwoPartyContract"
     eventName="SetPurpose"
     localProvider={localProvider}
     mainnetProvider={mainnetProvider}
