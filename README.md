@@ -4,87 +4,118 @@
 - and memory, we shall be sheltered from rugs, no pact shall be forgotten and no betrayer
 - shall avoid @Zachbtc's unwavering gaze.
 
-................................................................................</br>
-................................................................................</br>
-................................................................................</br>
-.........................................%(((((&&&&&&&..........................</br>
-.......................................<(0((((&&&&&&&&&&&&......................</br>
-......................................<<((((((((&&&&&&&&&&&&&&..................</br>
-....................................<<.......(((&&&&&&&&&&&&&&&&&...............</br>
-..................................<<.........(((&&&&&&&&&&&&&&&&&&..............</br>
-................................<<.........(((&&&&&&&&&&&&&&&&&&&&&&............</br>
-......................................&&&((((&&&&&&&&&&&&&&&&&&&&&&&&...........</br>
-....................................&&&&&####&&&&&&%(%#%,&&&&&&&&&&&&&..........</br>
-............................%####,,&&&&&&%###&&&&&&(%  %,*.#####.&&&&&..........</br>
-..........................########/&&&&&&%,((#&&&&&. %,/,##########&&&&.........</br>
-.........................##########&&&&&&%%%%%&&&&&&*,,.############%&&.........</br>
-.........................##########&&&&&&/*,,*&&&&&&#################&&.........</br>
-.........................##########,,,,,,#####////(,#################((.........</br>
-........................&(#%%%%%.############################.%%%%%%%&..........</br>
-........................#####%#/.##########################...#######...........</br>
-........................########..########################....#######...........</br>
-.......................########....######################.....#######...........</br>
-.......................########.....####################......&######...........</br>
-.......................#######......###################........######...........</br>
-.......................######........##################,.......######...........</br>
-......................######.........############# ,#%%%.......######...........</br>
-....................#######..........#######%/#(,%,,,%%#&......######...........</br>
-...................#######...........##,(%#*/%(#,,*,%#,,,......######...........</br>
-..................#######............#&,/,,,,/,,,,/,,,,/,,.....#######..........</br>
-.................#######.............,/,,,,/,,,,*,,,**,,,*,....#######..........</br>
-................#######..............,,,(,,,,(,,,,(,,,,(,,,....#######..........</br>
-...............&#%/%#................/,,,,/,,,,/,,,,(,,,,(,.....#####...........</br>
-............####%%%,.................,,,*,,,**,,,**,,,**,,......#####...........</br>
-.........###&#/&##.................. (,,,,(,,,,(,,,,/,,,,/,,....%%%%%...........</br>
-..........%%###&.................... .,(,,,,(,,,,(,,,,(,,,,%....#####...........</br>
-....................................  ,,,**,,,**,,,*,,,,/,,....#####%...........</br>
-....................................  &(,,,,/,,,,/,,,,/,,,,/%.#&####&...........</br>
-...................................    ,,(,,,,(,,,,(,,,,(,,,,.#&    &...........</br>
-...................................     ,,,*,,,,/,,,,/,,,,/,*...&  &............</br>
-...................................      #,,,,/,,,,/,,,,*,,,..&&&&&&&&..........</br>
-...................................        (,,,,(,,,,(,,,,(,......&.............</br>
-..................................           (,,,,/,,,,/,,,,.&...&&.............</br>
-..................................              (,,,**,,,**,.,...&&.............</br>
-..................................                   /,(,,,,....................</br>
-..................................##########.....###########..%.................</br>
-.................................##########......############.%&................</br>
-.................................##########.......###########.%%%...............</br>
-.................................#########.........##########.%%%%..............</br>
-.................................#########..........##########&,,%..............</br>
-................................#########&..........##########.,(,..............</br>
-................................#########...........###########,,**.............</br>
-...............................##########............###########,,*.............</br>
-..............................&#########.............##########.,,,.............</br>
-..............................#########..............#########..,,,.............</br>
-.............................%########................########..#,,#............</br>
-.............................#######%.................########...*,*............</br>
-............................,######...................#######%...,/,............</br>
-............................######....................&######....#,,............</br>
-...........................######%.....................######.....,*#...........</br>
-........................#########...................#########.....,*,...........</br>
-...................##############..............##############.....#,,...........</br>
-.............####################........%###################......(,(..........</br>
-................................................................................</br>
-................................................................................</br>
-
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWNXXXNNWWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWWN0kdooc;',,;cldk0XWMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKxdlc::::;..........,:okXWMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMW0xo:,;:::::::,.............'ckXWMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNOo,. .':::::::::;................,oKWMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMNOl'.  ..;lxkkOOOxl::'............... .'lKWMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKd,. .;lx0XWMMMMMMMXd::,...................'dXMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMWKl...cxKWMMMMMMMMMMMMXd::'.....................;kWMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMXo..,dKWMMMMMMMMMMMMMMNkc:;..................... ..oNMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMWMMMMMMMMMMMMMMW0;.,xNMMMMMMMMMMMMMMMWKdc:;..........................oXMMMMMMMMMMMMMM
+MMMMMMMMMMMMMNkkNMMMMMMMMMMMMWO'.lXMMMMMMMMMMMWN0kxkdl::,............................dNMMMMMMMMMMMMM
+MMMMMMMMMMMW0loKWMMMMMMMMMMMMK;.dNMMMMMMMMMMWKo,...':::;.............................'kWMMMMMMMMMMMM
+MMMMMMMMMMMK:,dXWMMMMMMMMMMMWd.lNMMMMMMMMMMNx,.....,;;;,.........''...................:XMMMMMMMMMMMM
+MMMMMMMMMMWd:dloXMMMMMMMMMMMWOdKMMMWXK0O000l......',;,;,........,c:::;ldl;'............xWMMMMMMMMMMM
+MMMMMMMMMMXoxWxlXMMMMMMMMMMMMMMMN0xoc:;;lxd'.... ..',,;;'.......,::::lxkdc;;;,,'.......cXMMMMMMMMMMM
+MMMMMMMMMMXdOWxlXMMMMMMMMMMMMMW0o:;;;;;;:oc..... ..';;;;'.......':::lxkxc;,;;;;;;,'....'kMMMMMMMMMMM
+MMMMMMMMMMWXNWxlXMMMMMMMMMMMMWOc;;;;;;;;;:,..... ..,:::;'.......':ldkkdc;;;;;;;;;;;,....oNMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMKl;;;;;;;;;;,........';::;;'..... .;dkkxo:;,;;;;;;;;;;;,...cXMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMO:;;;;;;;;;;,........;lxdddc. .....;ddl:;;;;;;;;;;;;;;;;'..cXMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMM0c;;;;;;;;;;,...... .':ooodc. .....';;;;;;;;;;;;;;;;;;;;,..:XMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMKl;;;;;;;;;;,;;;;;;;;;,;;;;;;,,,,,;;;;;;;;;;;;;;;;;;;;;;,,,oXMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMM0c;;;;;;;::;;cdxxxxxol:,;;,:oxxxxxxl;;;;;;;;;;;cc;;;;;;;:lxONMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMWx;,,,,,,;:ol;;:::::c::;;;;;;:cccccc:;;;;;;;,;;lOd;,,,,,,;dKXWMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMXo;;;;;;;:ckx;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;oKWk:;;;;;;:kWMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMM0c;;;;;;:;oK0l;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;oKWWk:;;;;;;;xWMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMWx;;;;;;;;;xNWk:;;;;;;;;;;;;;;;;;;;;;;;;;;;;;oKMMWO:;;;;;;;dNMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMXo;;;;,;;,cOMMXd;;;;;;;;;;;;;;;;;;;;;;;;;;;;oKMMMMO:;;;;;;;dNMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMM0c;;,;;;;;oXMMW0c;;;;;;;;;;;;;;;;;;;;;;;;;;l0WMMMM0c;;;;;;;oXMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMO:;;,;;;;:kWMMMNd;;;;;;;;;;;;;;;;;;;;;;;;;:OWMMMMM0c;;;;;;;oXMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMWk;;;;;;;;oXMMMMM0c;;;;;;;;;;;;;;;;;;;;;;;;xNMMMMMMKl,;;;;;;oXMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMNd;;;;;;;:OWMMMMMXo;;;;;;;;;;;;;;;;;;;,;;;lKMMMMMMMXo;;;;;;;dNMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMXo;;;;;;;dNMMMMMMWk:;;;;;;;;;;;;;;;;;;,,;:dXMMMMMMMNd;;;;;;;xNMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMW0c;;;;;;c0MMMMMMMM0c;;;;;;;;;;;;;;;;;:ldxxx0WMMMMMMWk;;;;;;;xWMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMW0l;;;;;;:kWMMMMMMMMXo;;;;;;;;;;;;;clodxddlclkNMMMMMMWO:;;;;;;xWMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMWOc;;;;;;;dXMMMMMMMMMNx;;;;;;;;;:cloddlloooolldKMMMMMMMO:;;;;;;xWMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMWOc;;;;;;;oKMMMMMMMMMMNd,,;;::ccllllolllcloooccoONMMMMMMO:;;;;;;dNMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMWOc;;;;;;;l0WMMMMMMMMMMWkcclc::lcclccoooolodxxxkkk0WMMMMMO:;;;;;;oXMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMW0l;;;;;;;:OWMMMMMMMMMMMMKkkxlcclooddxxxkkkkOOOOOOkkKWMMMMO:;;;;;;cKMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMKo;;;;;;;:kNMMMMMMMMMMMMWKkkkkkkkOOOOOOOOOOOOOOOOOOkOXMMMMO:;;;;;;:OMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMNd;;;;;;,:kNMMMMMMMMMMMMMW0kOOOOOOOOOOOOOOOOOOOOOOOOOkKWMMM0c;;;;;;:kWMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMWk:,;;;;;:kNMMMMMMMMMMMMMMNOkOOOOOOOOOOOOOOOOOOOOOOOOOk0WMMMKl;;;;;;:kWMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXW0l;;;;;;cOWMMMMMMMMMMMMMMMXkkOOOOOOOOOOOOOOOOOOOOOOOOkkKWMMMXo;;;;;;c0MMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXKl::;::;l0WMMMMMMMMMMMMMMMMXkkOOOOOOOOOOOOOOOOOOOOOOOOkkKMMMMNd;;;;;;lKMMMMMMMMMMMM
+MMMMMMMMMMMMMNd:dl;;;;:cdXMMMMMMMMMMMMMMMMMMXOOOOOOOOOOOOOOOOOOOOOOOOOOOk0WMMMWk:;;;;;xNMMMMMMMMMMMM
+MMMMMMMMMMWXko::c:;;;;ckNMMMMMMMMMMMMMMMMMMWXOOOOOOOOOOOOOOOOOOOOOOOOOOOkONMMMM0l;;;;cOWMMMMMMMMMMMM
+MMMMMMMMMNkc;,,:ooc;:o0WMMMMMMMMMMMMMMMMMMMWX0OOOOOOOOOOOOOOOOOOOOOOOOOOkkXWMMMKl;;;;lKMMMMMMMMMMMMM
+MMMMMMMMKdl;,,,,,cclONMMMMMMMMMMMMMMMMMMMMMNNKOOOOOOOOOOOOOOOOOOOOOOOOOOkkKWMMMKl;;;;lKMMMMMMMMMMMMM
+MMMMMMMMWXX0l,,,,cxXMMMMMMMMMMMMMMMMMMMMMMMNNXOOOOOOOOOOOOOOOOOOOOOOOOOOOk0NMMWk:;;;;oKMMMMMMMMMMMMM
+MMMMMMMMMMMMXx;;dXWMMMMMMMMMMMMMMMMMMMMMMMMNNN0OOOOOOOOOOOOOOOOOOOOOOOOOOkONMW0c;;;;;oXMMMMMMMMMMMMM
+MMMMMMMMMMMMMWdlXMMMMMMMMMMMMMMMMMMMMMMMMMWNWWKOOOOOOOOOOOOOOOOOOOOOOOOOOkkXWKl,;;;;;dNMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMMMMMMMWNWMXOOOOOOOOOOOOOOOOOOOOOOOOOOkkKWO;',;;;,cKMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMMMMMMMNNWMWKOOOOOOOOOOOOOOOOOOOOOOOOOkk0NO;;dkkkocOMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMMMMMMMNNMMMNOOOOOOOOOOOOOOOOOOOOOOOOOOk0NNxoKMMWxoXMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMMMMMMMNNMMMWXOOOOOOOOOOOOOOOOOOOOOOOOOkONMW0xKWOo0MMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMMMMMMWNWMMMMWXOOOOOOOOOOOOOOOOOOOOOOOOkOKK00xlclx00XWMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMMMMMMWNWMMMMMWWXOOOOOOOOOOOOOOOOOOOOOOkkxc:cl;.;lc:xNMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMMMMMMWNMMMMMMMMWX0OOOOOOOOOOOOOOOOOOOOkkKNNNNx;xNNNWMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMMMMMMNNMMMMMMMMMMWKOOOOOOOOOOOOOOOOOOOkkKWMMWx,xMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMMMMMMNWMMMMMMMMMMMWNK0OOOOOOOOOOOOOOOOkOKWMMWd'xWMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMMMMMWNWMMMMMMMMMMMMMMNX0OOOOOOOOOOOOOOkOKNMMWo.dWMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMMMMMWNWMMMMMMMMMMMMMMMMWNXK0OOOOOOOOOOkOKNMMW0d0WMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMMMMMWNWMMMMMMMMMMMMMMMMMMMWWNXK00OOOOOkOO0WMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMMMMMXOkkkOOOOOOOOOOKWWWNKOOOOOOOkkxxddokOd0MMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMMMMM0c;,;;;;;;;;;;c0WMMWOc;;;;;;;;;;;;;dOcoNMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMMMMNx;;,;;;;;;;;;;xNMMMMNd;;;;;;;;;;;;;dOc,kWMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMMMMKl;;;,;;;;;,;;lKMMMMMW0c;;;;;;;;;;;;oOc.;OWMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMMMM0c;;;;;;;;;;;:kWMMMMMMWk:,;;;;;;;;;;ckl..:0WMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMMMM0c;;;;,;;;;;;oXMMMMMMMMNx;;;;;;;;;;;:dl'..lXMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMMMM0c;;;;;;;;;;:kWMMMMMMMMMKl;;;;;;;;;;;ll,'',kWMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMMMWk;;;;;;;;;;;c0MMMMMMMMMMWx;;;;;,;;;;;:llodcxNMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMMMXo;;;;;;;;;;,lKMMMMMMMMMMWO:;;;;;;;;;;;oOOOO0NMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMMWO:;;;;;;;;;,,oXMMMMMMMMMMM0c;;;;;;;;;;,ckOOO0NMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMMNd;;;;;;;;;;;;dNMMMMMMMMMMMXo;;;;;;;;;;;:x0OO0XWMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMM0c;;;;;;;;;;:ckWMMMMMMMMMMMNd;;;;;;;;;;;;d0OO0XWMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMNx;;;;;;;;;;;okXMMMMMMMMMMMMWO:;;;;,;;;;;;x0OOOKWMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMMKl;;;;;;;;;;cOWWMMMMMMMMMMMMMKc;;;;,;;;;;;xK0OOKWMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMWk:;;;;;;;;;:kWMMMMMMMMMMMMMMMXo;;;;;;;,;;:OX0OO0NMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMMXo;,;;;;;;;:xNMMMMMMMMMMMMMMMMWk;;;;;;;;;;c0WKOO0NMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMWOc;;;;;;;;;dNMMMMMMMMMMMMMMMMMM0c;;;;;;;;;lKWXOO0XMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMNd;;;;;;;;;dXMMMMMMMMMMMMMMMMMMMKl;;;;;;;;;dNMX0OOXMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMMKl;;;;;;;;dXMMMMMMMMMMMMMMMMMMMMNd;;;;;;;;:kWMN0OOKWMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMWk:;;;;;;;dXMMMMMMMMMMMMMMMMMMMMMWk:;;;;;;;c0MMWKOOKWMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlXMMMMMMMMMMMMMMMMXo:;;;;::oKMMMMMMMMMMMMMMMMMMMMMMM0c:::::::dXMMWXOO0NMMMMMMMMMMMMMM
+MMMMMMMMMMMMMWxlKMMMMMMMMMMMMMMMMOc;,,;;:l0WMMMMMMMMMMMMMMMMMMMMMMMKl;::::::xNMMMX0O0NMMMMMMMMMMMMMM
+MMMMMMMMMMMMMKl:xNMMMMMMMMMMMMMMXd::;;::cOWMMMMMMMMMMMMMMMMMMMMMMMMKo;:::::cOWMMMNKOOXWMMMMMMMMMMMMM
+MMMMMMMMMMMMMkddoXMMMMMMMMMMMWXOl;;;;;;:xNMMMMMMMMMMMMMMMMMMMMMMMWXxc::::::c0MMMMWKOOKWMMMMMMMMMMMMM
+MMMMMMMMMMMMM0xdkWMMMMMMMMWXOdc;;;;;;;;c0WMMMMMMMMMMMMMMMMMMMMWXOdc;;;;;;;;:OMMMMMXOOKNMMMMMMMMMMMMM
+MMMMMMMMMMMMMWXKNMMMMWWX0koc;;;;;;;;;;;lKMMMMMMMMMMMMMMMMMWNKkdc;;;;;;;;;;;:kWMMMMN0O0NMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMWX0kxoc;;;;;;;;;;;;;;;lKMMMMMMMMMMMMMNX0kdl:;;;;;;;;;;;;;;;xNMMMMNKOOXWMMMMMMMMMMMM
+MMMMMMMMMMMWXK0Oxoc;;,,;;;;;;,;;;;;;;;;lKMMMMMMWXKK0kdl:;;;;;;;;;;,;;;;;;;;;dNMMMMWKOOKWMMMMMMMMMMMM
+MMMMMMMMMMMXxlc::::::::::ccclloddl:;;;:xNMMMMMMKdlcc::::::::::ccclloddc;;;;:kWMMMMMNKKXWMMMMMMMMMMMM
+MMMMMMMMMMMWNXXXKKKKKKKXXXXNNWWWWNK0OOKNMMMMMMMWNXXXXKKKKKKKXXXXNNWWWWX0OOOKNMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
+MMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMMM
 
 \\\\\WHAT IF THOTH?\\\\\
 
-THOTH is crypto's first protocol that utilizes the internal cryptography in
-Etehereum's EVM to bind real world parties to legally binding agreements.
-Launched initially on CANTO thanks to the CANTO Hackathon, THOTH allows two 
-(or more) parties to bind themselves into a legal agreement that includes
-terms that cannot be directly included in smart contracts because of their
-size, uncertainty, or incompatibility with the EVM.
+THOTH is crypto's first protocol that utilizes the internal cryptography in Etehereum's EVM to bind 
+real world parties to legally binding agreements. Launched initially on CANTO thanks to the CANTO 
+Hackathon, THOTH allows two (or more) parties to bind themselves into a legal agreement that includes
+terms that cannot be directly included in smart contracts because of theirsize, uncertainty, or 
+incompatibility with the EVM.
 
-Users can bring any contract in PDF form to THOTH to be bound. This can be
-provided by one party's lawyer, custom written by the parties, or selected
-from an external legal repository such as OpenLaw (https://www.openlaw.io/).
+Users can bring any contract in PDF form to THOTH to be bound. This can be provided by one party's 
+lawyer, custom written by the parties, or selected from an external legal repository such as OpenLaw 
+(https://www.openlaw.io/).
 
-Ultimately, THOTH uploads the agreement to IPFS, and prompts the signatories
-to execute the agreement. Upon completion by all signatories, the fully
-executed agreement is [insert mechanic].
+Ultimately, THOTH uploads the agreement to IPFS, and prompts the signatories to execute the agreement. 
+Upon completion by all signatories, the fully executed agreement is [insert mechanic].
 
-<b>THOTH and its developers can provide no legal advice or opinions as to
-  the legality of any contracts agreed to and executed on THOTH. Use of and
-  reliance of THOTH is entirely at the user's risk.</b>
+<b>THOTH and its developers can provide no legal advice or opinions as to the legality of any contracts 
+  agreed to and executed on THOTH. Use of and reliance of THOTH is entirely at the user's risk.</b>
