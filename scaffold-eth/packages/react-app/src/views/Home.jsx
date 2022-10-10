@@ -30,103 +30,170 @@ function Home({ yourLocalBalance, readContracts }) {
         for now.
       </div>
       <div style={{ margin: 32 }}>
-        Signing functionality will need to be built as that is done off-chain.
+        Signing functionality will need to be built as that is done by front-end. Use <a href="https://signator.io/">https://signator.io/</a> for now.
+      </div>
+      <div style={{ margin: 32 }}>
+        If manually testing, make sure you sign the contract hash, aka output from{" "}
+        <span
+          className="highlight"
+          style={{ marginLeft: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
+        >
+          getMessageHash()
+        </span>{" "}
+        stored in{" "}
+        <span
+          className="highlight"
+          style={{ marginLeft: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
+        >
+          contractHashes
+        </span>{" "}
+        , NOT output from{" "}
+        <span
+          className="highlight"
+          style={{ marginLeft: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
+        >
+        getEthSignedMessageHash()
+        </span>{" "}
       </div>
       <div style={{ margin: 32 }}>
         App flow is as follows:
       </div>
       <div style={{ margin: 32 }}>
-        1. Hash contract details{" "}
+        1. Call{" "}
         <span
           className="highlight"
           style={{ marginLeft: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
         >
-          (Party1 Account, Party2 Account, IPFS Pointer to Contract Document, Block Number Agreement Proposed In)
+          createTwoPartyContract(Party1 Account, Party2 Account, IPFS Pointer to Contract Document)
         </span>{" "}
-        using{" "}
+        to generate and store contract hash in{" "}
         <span
           className="highlight"
           style={{ marginLeft: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
         >
-          getMessageHash()
-        </span>{" "}
-      </div>
-      <div style={{ margin: 32 }}>
-        2. Hash{" "}
-        <span
-          className="highlight"
-          style={{ marginLeft: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
-        >
-          getMessageHash()
-        </span>{" "}
-        output using{" "}
-        <span
-          className="highlight"
-          style={{ marginLeft: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
-        >
-          getEthSignedMessageHash()
-        </span>{" "}
-        to structure data for signature and store hash output in{" "}
-        <span
-          className="highlight"
-          style={{ marginLeft: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
-        >
-          twoPartyContracts
+          contractHashes
         </span>{" "}
         mapping
       </div>
       <div style={{ margin: 32 }}>
-        NOTE:{" "}
+        NOTE: Step 1 will populate mappings{" "}
+        <span
+          className="highlight"
+          style={{ marginLeft: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
+        >
+          contractParties, contractIpfsHash, contractBlock
+        </span>{" "}
+        with their respective data via call to{" "}
+        <span
+          className="highlight"
+          style={{ marginLeft: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
+        >
+          hashContract()
+        </span>{" "}
+        in{" "}
         <span
           className="highlight"
           style={{ marginLeft: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
         >
           createTwoPartyContract()
         </span>{" "}
-        performs steps 1 and 2
       </div>
       <div style={{ margin: 32 }}>
-        3. Sign{" "}
+        NOTE: You may need to retrieve the block number contract initiation occurred in as frontend doesn't return the block number yet <a href="https://goerli.etherscan.io/">https://goerli.etherscan.io/</a>
+      </div>
+      <div style={{ margin: 32 }}>
+        2. Call{" "}
+        <span
+          className="highlight"
+          style={{ marginLeft: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
+        >
+          contractHashes[<em>Party1 Address</em>][<em>Party2 Address</em>][<em>IPFS Pointer to Contract Document</em>][<em>Block Number Agreement Proposed In</em>]
+        </span>{" "}
+        to retrieve contract hash
+      </div>
+      <div style={{ margin: 32 }}>
+        3. Sign contract hash retrieved in Step 2
+      </div>
+      <div style={{ margin: 32}}>
+        NOTE: Front end doesn't support signing yet. Substitute with <a href="https://signator.io/">https://signator.io/</a> for now.
+      </div>
+      <div style={{ margin: 32 }}>
+        4. Commit signature from step 3 to blockchain using{" "}
+        <span
+          className="highlight"
+          style={{ marginLeft: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
+        >
+          signContract()
+        </span>{" "}
+      </div>
+      <div style={{ margin: 32}}>
+        <span
+          className="highlight"
+          style={{ marginLeft: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
+        >
+          signContract()
+        </span>{" "}
+        will generate an Ethereum signed message with{" "}
         <span
           className="highlight"
           style={{ marginLeft: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
         >
           getEthSignedMessageHash()
         </span>{" "}
-        output stored in{" "}
+        using contract hash in{" "}
         <span
           className="highlight"
           style={{ marginLeft: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
         >
-          twoPartyContracts
+          contractHashes
         </span>{" "}
-        using wallet.
-      </div>
-      <div style={{ margin: 32}}>
-        NOTE: This front-end feature has not been built yet. Substitute https://signator.io/ for now.
       </div>
       <div style={{ margin: 32 }}>
-        4. Commit signature from step 3 to blockchain.
-      </div>
-      <div style={{ margin: 32}}>
-        NOTE: The Solidity function for this step has not been built yet as signature verification is not working.
-      </div>
-      <div style={{ margin: 32 }}>
-        5. Verify signature using{" "}
+        It will then check the output of{" "}
+        <span
+          className="highlight"
+          style={{ marginLeft: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
+        >
+          getEthSignedMessageHash()
+        </span>{" "}
+        against the supplied signature from Step 3 using{" "}
         <span
           className="highlight"
           style={{ marginLeft: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
         >
           verifySignature()
         </span>{" "}
-        on the hash stored in
+        to check for validity before storing the signature
+      </div>
+      <div style={{ margin: 32 }}>
+        5. Counterparty will sign (<a href="https://signator.io/">https://signator.io/</a>) the contract hash and call{" "}
         <span
           className="highlight"
           style={{ marginLeft: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
         >
-          twoPartyContracts
+          signContract()
         </span>{" "}
-        and the signature generated by the frontend (not implemented yet)
+        as well to commit their signature to the contract storage
+      </div>
+      <div style={{ margin: 32 }}>
+        NOTE: The contract will automatically execute once the counterparty signs (check{" "}
+        <span
+          className="highlight"
+          style={{ marginLeft: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
+        >
+          contractExecuted[<em>contract hash</em>]
+        </span>{" "}
+        to confirm)
+      </div>
+      <div style={{ margin: 32 }}>
+        Lastly, someone can call{" "}
+        <span
+          className="highlight"
+          style={{ marginLeft: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
+        >
+          verifyExecution(<em>contract hash</em>)
+        </span>{" "}
+        to check if all parties have signed with valid signatures
       </div>
       <div style={{ margin: 32 }}>
         GITHUB: <a href="https://github.com/Zodomo/Thoth/blob/main/scaffold-eth/packages/hardhat/contracts/TwoPartyContract.sol">https://github.com/Zodomo/Thoth/blob/main/scaffold-eth/packages/hardhat/contracts/TwoPartyContract.sol</a>
