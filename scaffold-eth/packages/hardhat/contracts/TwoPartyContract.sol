@@ -2,7 +2,7 @@
 pragma solidity >=0.8.0 <0.9.0;
 
 contract TwoPartyContract {
-  address payable owner;
+  address[] public owners;
 
   /* "multidimensional" mapping allows for one party to sign different contracts (even each contract multiple times but only once per block) with different people
      Can only sign one iteration of a specific contract between two parties once per block as we use block.number as nonce
@@ -21,12 +21,18 @@ contract TwoPartyContract {
 
   // what should we do on deploy?
   constructor() {
-    owner = payable(msg.sender);
+    owners.push(payable(msg.sender));
   }
 
-  // Require msg.sender to be owner of contract to call modified function
+  // Require msg.sender to be an owner of contract to call modified function
   modifier onlyOwner() {
-    require(msg.sender == owner, "Not contract owner");
+    bool isOwner;
+    for (uint i = 0; i < owners.length; i++) {
+      if (payable(msg.sender) == owners[i]) {
+        isOwner = true;
+      }
+    }
+    require(isOwner, "Not a contract owner");
     _;
   }
 
@@ -46,6 +52,11 @@ contract TwoPartyContract {
   modifier hasExecuted(bytes32 _contractHash) {
     require(contractExecuted[_contractHash], "Contract hasn't executed");
     _;
+  }
+
+  // Add additional owners to contract
+  function addOwner(address _owner) public onlyOwner {
+    owners.push(_owner);
   }
 
   // Hash of: Party1 Address + Party2 Address + IPFS Hash + Block Number Agreement Proposed In
@@ -142,7 +153,7 @@ contract TwoPartyContract {
     return (party1 == party2);
   }
 
-  // Payment handling functions if we need them, otherwise just accept and allow withdrawal
+  // Payment handling functions if we need them, otherwise just accept and allow withdrawal to any owner
   function withdraw() public onlyOwner {
     (bool success, ) = msg.sender.call{value: address(this).balance}("");
     require(success);
