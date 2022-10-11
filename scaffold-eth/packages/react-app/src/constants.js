@@ -226,6 +226,12 @@ export const NETWORKS = {
     blockExplorer: "https://moonbeam-explorer.netlify.app/",
     rpcUrl: "http://127.0.0.1:9933",
   },
+  cantoMainnet: {
+    name: "cantoMainnet",
+    chainId: 7700,
+    blockExplorer: "https://evm.explorer.canto.io/",
+    rpcUrl: "https://jsonrpc.canto.nodestake.top/",
+  },
 };
 
 export const NETWORK = chainId => {

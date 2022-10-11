@@ -277,6 +277,13 @@ module.exports = {
         mnemonic: mnemonic(),
       },
     },
+    cantoMainnet: {
+      url: "https://jsonrpc.canto.nodestake.top",
+      chainId: 7700,
+      accounts: {
+        mnemonic: mnemonic(),
+      },
+    },
   },
   solidity: {
     compilers: [

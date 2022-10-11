@@ -67,16 +67,18 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
 
   // You can also Verify your contracts with Etherscan here...
   // You don't want to verify on localhost
-  // try {
-  //   if (chainId !== localChainId) {
-  //     await run("verify:verify", {
-  //       address: TwoPartyContract.address,
-  //       contract: "contracts/TwoPartyContract.sol:TwoPartyContract",
-  //       constructorArguments: [],
-  //     });
-  //   }
-  // } catch (error) {
-  //   console.error(error);
-  // }
+
+  // This doesnt work
+  /*try {
+    if (chainId !== localChainId) {
+      await run("verify:verify", {
+        address: TwoPartyContract.address,
+        contract: "contracts/TwoPartyContract.sol:TwoPartyContract",
+        constructorArguments: [],
+      });
+    }
+  } catch (error) {
+    console.error(error);
+  }*/
 };
 module.exports.tags = ["TwoPartyContract"];

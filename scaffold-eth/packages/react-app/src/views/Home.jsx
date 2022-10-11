@@ -25,7 +25,7 @@ function Home({ yourLocalBalance, readContracts }) {
           className="highlight"
           style={{ marginLeft: 4, /* backgroundColor: "#f9f9f9", */ padding: 4, borderRadius: 4, fontWeight: "bolder" }}
         >
-          Debug Contracts
+          <Link to="/debug">"Debug Contract"</Link>
         </span>{" "}
         for now.
       </div>

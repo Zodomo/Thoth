@@ -1,12 +1,12 @@
-// SPDX-License-Identifier: NONE
+// SPDX-License-Identifier: GPL-3.0
 pragma solidity >=0.8.0 <0.9.0;
 
 contract TwoPartyContract {
-  address[] public owners;
+  mapping(address => bool) public owners; // Contract owners, all addresses initialize as false
 
   /* "multidimensional" mapping allows for one party to sign different contracts (even each contract multiple times but only once per block) with different people
      Can only sign one iteration of a specific contract between two parties once per block as we use block.number as nonce
-     Originator/Initiator => Counterparty => IPFS Hash => Block Number Contract Proposed In => Contract Hash */
+     Originator/Initiator + Counterparty + IPFS Hash + Block Number Contract Proposed In = Contract Hash */
   mapping(address => 
     mapping(address => 
       mapping(string => 
@@ -21,18 +21,12 @@ contract TwoPartyContract {
 
   // what should we do on deploy?
   constructor() {
-    owners.push(payable(msg.sender));
+    owners[payable(msg.sender)] = true;
   }
 
   // Require msg.sender to be an owner of contract to call modified function
   modifier onlyOwner() {
-    bool isOwner;
-    for (uint i = 0; i < owners.length; i++) {
-      if (payable(msg.sender) == owners[i]) {
-        isOwner = true;
-      }
-    }
-    require(isOwner, "Not a contract owner");
+    require(owners[msg.sender], "Not a contract owner");
     _;
   }
 
@@ -56,7 +50,7 @@ contract TwoPartyContract {
 
   // Add additional owners to contract
   function addOwner(address _owner) public onlyOwner {
-    owners.push(_owner);
+    owners[payable(_owner)] = true;
   }
 
   // Hash of: Party1 Address + Party2 Address + IPFS Hash + Block Number Agreement Proposed In
