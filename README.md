@@ -6,10 +6,11 @@
 
 \\\\\WHAT IS THOTH?\\\\\
 
-THOTH is crypto's first protocol that utilizes the internal cryptography in Ethereum's EVM to bind 
+
+THOTH is crypto's first protocol that utilizes the internal cryptography in Ethereum's VM to bind 
 real world parties to legally binding agreements. Launched initially on CANTO thanks to the CANTO 
 Hackathon, THOTH allows two (or more) parties to bind themselves into a legal agreement that includes
-terms that cannot be directly included in smart contracts because of theirsize, uncertainty, or 
+terms that cannot be directly included in smart contracts because of their size, uncertainty, or 
 incompatibility with the EVM.
 
 Users can bring any contract in PDF form to THOTH to be bound. This can be provided by one party's 
@@ -20,6 +21,6 @@ Ultimately, THOTH uploads the agreement to IPFS, and prompts the signatories to 
 Once all parties sign, the agreement is fully executed and is marked as such on chain.
 
 <b>THOTH and its developers can provide no legal advice or opinions as to the legality of any contracts 
-  agreed to and executed on THOTH. Use of and reliance of THOTH is entirely at the user's risk.
+  agreed to and executed on THOTH. Use of and reliance of THOTH is entirely at the user's risk.</b>
 
-THOTH's development front-end is available at https://zodomo-thoth.surge.sh/
+THOTH's development front-end is available at <i>https://zodomo-thoth.surge.sh/<i/>
