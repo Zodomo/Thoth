@@ -19,6 +19,16 @@ contract TwoPartyContract {
   mapping(bytes32 => bytes[]) public contractSignatures; // Contract Hash => Signatures
   mapping(bytes32 => bool) public contractExecuted; // Contract Hash => True/False, contract automatically executes when both parties sign
 
+  // Log contract initiator address, counterParty address, ipfsHash/Pointer string, and blockNumber agreement is in
+  // counterParty is the only unindexed parameter because EVM only allows for three and I found counterParty to be the least relevant
+  event ContractCreated(address indexed initiator, address counterParty, string indexed ipfsHash, uint256 indexed blockNumber);
+  // Log contract hashes on their own as all contrct details in ContractCreated can be obtianed by querying granular contract data mappings (contractParties, ...)
+  event ContractHashed(bytes32 indexed contractHash);
+  // Log contract signatures, contractHash used in verification, and the signer address to validate against
+  event ContractSigned(address indexed signer, bytes32 indexed contractHash, bytes indexed signature);
+  // Log contract execution using hash and the block it executed in
+  event ContractExecuted(bytes32 indexed contractHash, uint256 indexed blockNumber);
+
   // what should we do on deploy?
   constructor() {
     owners[payable(msg.sender)] = true;
@@ -83,8 +93,8 @@ contract TwoPartyContract {
     return keccak256(abi.encodePacked("\x19Ethereum Signed Message:\n32", _messageHash));
   }
 
-  // Verify if signature was for messageHash and that the signer is valid
-  function verifySignature(address _signer, address _counterParty, string memory _ipfsHash, uint256 _blockNum, bytes memory _signature) internal view returns (bool) {
+  // Verify if signature was for messageHash and that the signer is valid, public because interface might want to use this
+  function verifySignature(address _signer, address _counterParty, string memory _ipfsHash, uint256 _blockNum, bytes memory _signature) public view returns (bool) {
     bytes32 messageHash = contractHashes[_signer][_counterParty][_ipfsHash][_blockNum];
     bytes32 ethSignedMessageHash = getEthSignedMessageHash(messageHash);
     return recoverSigner(ethSignedMessageHash, _signature) == _signer;
@@ -95,14 +105,15 @@ contract TwoPartyContract {
      We prevent _counterParty from hashing because switching party address order will change hash 
      The contract hash is what each party needs to sign */
   function hashContract(address _counterParty, string memory _ipfsHash, uint256 _blockNum) internal onlyInitiator(_counterParty, _ipfsHash, _blockNum) returns (bytes32) {
-    bytes32 hash = getMessageHash(msg.sender, _counterParty, _ipfsHash, _blockNum);
-    contractHashes[msg.sender][_counterParty][_ipfsHash][_blockNum] = hash;
-    contractHashes[_counterParty][msg.sender][_ipfsHash][_blockNum] = hash;
-    contractParties[hash].push(msg.sender);
-    contractParties[hash].push(_counterParty);
-    contractIpfsHash[hash] = _ipfsHash;
-    contractBlock[hash] = _blockNum;
-    return hash;
+    bytes32 contractHash = getMessageHash(msg.sender, _counterParty, _ipfsHash, _blockNum);
+    contractHashes[msg.sender][_counterParty][_ipfsHash][_blockNum] = contractHash;
+    contractHashes[_counterParty][msg.sender][_ipfsHash][_blockNum] = contractHash;
+    contractParties[contractHash].push(msg.sender);
+    contractParties[contractHash].push(_counterParty);
+    contractIpfsHash[contractHash] = _ipfsHash;
+    contractBlock[contractHash] = _blockNum;
+    emit ContractHashed(contractHash);
+    return contractHash;
   }
 
   // Instantiate two party contract with (msg.sender, counterparty address, IPFS hash of the contract document, current block number) and hash it, return block number of agreement proposal
@@ -111,6 +122,7 @@ contract TwoPartyContract {
     // Need to instantiate hash field for each party to pass onlyInitiator check in hashContract()
     contractHashes[msg.sender][_counterParty][_ipfsHash][block.number] = bytes32("1");
     hashContract(_counterParty, _ipfsHash, block.number);
+    emit ContractCreated(msg.sender, _counterParty, _ipfsHash, block.number);
     return block.number;
   }
 
@@ -122,10 +134,13 @@ contract TwoPartyContract {
     require(verifySignature(msg.sender, _counterParty, _ipfsHash, _blockNum, _signature), "Signature not valid");
     if (contractSignatures[messageHash].length == 0) { // Push signature if no other signatures are stored
       contractSignatures[messageHash].push(_signature);
+      emit ContractSigned(msg.sender, messageHash, _signature);
     } else if (contractSignatures[messageHash].length == 1) { // Push signature if other party has signed and isn't trying to sign again
       require(recoverSigner(getEthSignedMessageHash(messageHash), contractSignatures[messageHash][0]) != msg.sender, "Already signed");
       contractSignatures[messageHash].push(_signature);
+      emit ContractSigned(msg.sender, messageHash, _signature);
       contractExecuted[messageHash] = true;
+      emit ContractExecuted(messageHash, block.number);
     } else { // Shouldn't ever be hit but will leave anyways
       revert("Two signatures already collected");
     }
