@@ -16,8 +16,8 @@ contract TwoPartyContract {
   mapping(bytes32 => address[]) public contractParties; // Contract Hash => Party Addresses
   mapping(bytes32 => string) public contractIpfsHash; // Contract Hash => IPFS Pointer
   mapping(bytes32 => uint256) public contractBlock; // Contract Hash => Block Number in which agreement was proposed
-  mapping(bytes32 => bytes[]) public contractSignatures; // Contract Hash => Signatures
   mapping(bytes32 => bool) public contractExecuted; // Contract Hash => True/False, contract automatically executes when both parties sign
+  mapping(bytes32 => bytes[]) public contractSignatures; // Contract Hash => Signatures
 
   // Log contract initiator address, counterParty address, ipfsHash/Pointer string, and blockNumber agreement is in
   // counterParty is the only unindexed parameter because EVM only allows for three and I found counterParty to be the least relevant
@@ -160,6 +160,19 @@ contract TwoPartyContract {
       }
     }
     return (party1 == party2);
+  }
+
+  // Return all contract data using just the _contractHash
+  // Might be useful for frontend
+  function getContractData(bytes32 _contractHash) public view returns (address, address, string memory, uint256, bool, bytes memory, bytes memory) {
+    address initiator = contractParties[_contractHash][0];
+    address counterParty = contractParties[_contractHash][1];
+    string memory ipfsHash = contractIpfsHash[_contractHash];
+    uint256 blockNumber = contractBlock[_contractHash];
+    bool executed = contractExecuted[_contractHash];
+    bytes memory firstSignature = contractSignatures[_contractHash][0];
+    bytes memory secondSignature = contractSignatures[_contractHash][1];
+    return (initiator, counterParty, ipfsHash, blockNumber, executed, firstSignature, secondSignature);
   }
 
   // Payment handling functions if we need them, otherwise just accept and allow withdrawal to any owner
