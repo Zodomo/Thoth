@@ -4,13 +4,13 @@ const { ethers } = require("hardhat");
 
 const localChainId = "31337";
 
-// const sleep = (ms) =>
-//   new Promise((r) =>
-//     setTimeout(() => {
-//       console.log(`waited for ${(ms / 1000).toFixed(3)} seconds`);
-//       r();
-//     }, ms)
-//   );
+const sleep = (ms) =>
+  new Promise((r) =>
+    setTimeout(() => {
+      console.log(`waited for ${(ms / 1000).toFixed(3)} seconds`);
+      r();
+    }, ms)
+  );
 
 module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
   const { deploy } = deployments;
@@ -67,9 +67,9 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
 
   // You can also Verify your contracts with Etherscan here...
   // You don't want to verify on localhost
-
-  // This doesnt work
-  /*try {
+  console.log("Sleeping for 65 seconds to allow Etherscan some time to see contract bytecode.");
+  await sleep(65000); // Sleep to give Etherscan chance to see the deployed bytecode
+  try {
     if (chainId !== localChainId) {
       await run("verify:verify", {
         address: TwoPartyContract.address,
@@ -79,6 +79,6 @@ module.exports = async ({ getNamedAccounts, deployments, getChainId }) => {
     }
   } catch (error) {
     console.error(error);
-  }*/
+  }
 };
 module.exports.tags = ["TwoPartyContract"];
