@@ -23,8 +23,11 @@ contract TwoPartyContract {
   
   // Contract struct will hold all contract data
   struct Contract {
+    string description;
     address initiator;
+    string initiatorName;
     address counterparty;
+    string counterpartyName;
     string ipfsHash;
     uint256 blockProposed;
     uint256 blockExecuted;
@@ -42,7 +45,12 @@ contract TwoPartyContract {
 
   // Log contract hash, initiator address, counterparty address, ipfsHash/Pointer string, and blockNumber agreement is in
   // counterparty is the only unindexed parameter because EVM only allows for three and I found counterparty to be the least relevant
-  event ContractCreated(bytes32 indexed contractHash, address initiator, address counterparty, string indexed ipfsHash, uint256 indexed blockNumber);
+  event ContractCreated(
+    bytes32 indexed contractHash,
+    address initiator,
+    address counterparty,
+    string indexed ipfsHash,
+    uint256 indexed blockNumber);
   // Log contract hashes on their own as all contrct details in ContractCreated can be obtianed by querying granular contract data mappings (contractParties, ...)
   event ContractHashed(bytes32 indexed contractHash);
   // Log contract signatures, contractHash used in verification, and the signer address to validate against
@@ -154,15 +162,26 @@ contract TwoPartyContract {
                PUBLIC FUNCTIONS
   ******************************************/
 
-  // Instantiate two party contract with (msg.sender, counterparty address, IPFS hash of the contract document, current block number) and hash it, return block number of agreement proposal
+  // Instantiate two party contract, hash critical contract data, return block number of agreement proposal
   // notCreated() prevents duplicate calls from msg.sender or the counterparty by checking for existence of contract hash
-  function createTwoPartyContract(address _counterparty, string memory _ipfsHash) public notCreated(_counterparty, _ipfsHash) returns (bytes32) {
+  function createTwoPartyContract(
+    string memory _description,
+    string memory _name,
+    address _counterparty,
+    string memory _counterpartyName,
+    string memory _ipfsHash
+  ) public notCreated(_counterparty, _ipfsHash) returns (bytes32) {
+    // Generate contract hash with msg.sender, counterparty address, ipfs hash, and block number confirmed in
     bytes32 contractHash = hashContract(_counterparty, _ipfsHash, block.number);
 
     // Begin populating Contract data struct
-    // Save contract party addresses
+    // Set description
+    contracts[contractHash].description = _description;
+    // Save contract party addresses and names
     contracts[contractHash].initiator = msg.sender;
+    contracts[contractHash].initiator = _name;
     contracts[contractHash].counterparty = _counterparty;
+    contracts[contractHash].counterparty = _counterpartyName;
     // Save contract IPFS hash/pointer
     contracts[contractHash].ipfsHash = _ipfsHash;
     // Save block number agreement proposed in
