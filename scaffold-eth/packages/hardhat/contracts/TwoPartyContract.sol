@@ -34,14 +34,25 @@ contract TwoPartyContract {
     bool executed;
     bytes initiatorSig;
     bytes counterpartySig;
+    uint256 createFeePaid;
+    uint256 signFeePaid;
+    uint256 executeFeePaid;
   }
 
   // Store contract structs in mapping paired to contract hash
   mapping(bytes32 => Contract) public contracts;
 
+  // Data structures used by fee mechanisms
+  uint256 createFee; // Create fee fee in USD ($1.00 = 1 * 10**18)
+  uint256 signFee; // Signer fee in USD ($1.00 = 1 * 10**18)
+  uint256 executeFee; // Executor fee in USD ($1.00 = 1 * 10**18)
+
   /******************************************
                     EVENTS
   ******************************************/
+
+  // Log when new owners are added
+  event OwnerAdded(address indexed owner);
 
   // Log contract hash, initiator address, counterparty address, ipfsHash/Pointer string, and blockNumber agreement is in
   // counterparty is the only unindexed parameter because EVM only allows for three and I found counterparty to be the least relevant
@@ -57,6 +68,17 @@ contract TwoPartyContract {
   event ContractSigned(bytes32 indexed contractHash, address indexed signer, bytes indexed signature);
   // Log contract execution using hash and the block it executed in
   event ContractExecuted(bytes32 indexed contractHash, uint256 indexed blockNumber);
+  
+  // Log when any fee is paid
+  event CreateFeePaid(bytes32 indexed contractHash, address indexed payer, uint256 fee);
+  event SignFeePaid(bytes32 indexed contractHash, address indexed payer, uint256 fee);
+  event ExecuteFeePaid(bytes32 indexed contractHash, address indexed payer, uint256 fee);
+  // Log whenever any fee is changed
+  event CreateFeeChanged(uint256 fee);
+  event SignFeeChanged(uint256 fee);
+  event ExecuteFeeChanged(uint256 fee);
+  // Log whenever all fees are cleared
+  event FeesCleared();
 
   /******************************************
                   CONSTRUCTOR
@@ -95,7 +117,7 @@ contract TwoPartyContract {
     _;
   }
 
-  // Require contract creation by checking if _party1 is part of a contract with _party2
+  // Require caller is part of an initiated contract
   modifier validParty(bytes32 _contractHash) {
     require(contracts[_contractHash].initiator == msg.sender || contracts[_contractHash].counterparty == msg.sender, "Not a contract party");
     _;
@@ -120,15 +142,40 @@ contract TwoPartyContract {
   // Add additional owners to contract
   function addOwner(address _owner) public onlyOwner {
     owners[payable(_owner)] = true;
+    emit OwnerAdded(_owner);
+  }
+
+  // Set create fee
+  function setCreateFee(uint256 _fee) public onlyOwner {
+    createFee = _fee;
+    emit CreateFeeChanged(_fee);
+  }
+
+  // Set sign fee
+  function setSignFee(uint256 _fee) public onlyOwner {
+    signFee = _fee;
+    emit SignFeeChanged(_fee);
+  }
+
+  // Set execute fee
+  function setExecuteFee(uint256 _fee) public onlyOwner {
+    executeFee = _fee;
+    emit ExecuteFeeChanged(_fee);
+  }
+
+  // Clear all fees at once
+  function clearFees() public onlyOwner {
+    createFee = signFee = executeFee = 0;
+    emit FeesCleared();
   }
 
   /******************************************
               INTERNAL FUNCTIONS
   ******************************************/
 
-  // Hash of: Party1 Address + Party2 Address + IPFS Hash + Block Number Agreement Proposed In
-  function getMessageHash(address _party1, address _party2, string memory _ipfsHash, uint256 _blockNum) internal pure returns (bytes32) {
-    return keccak256(abi.encodePacked(_party1, _party2, _ipfsHash, _blockNum));
+  // Hash of: Initiator Address + Counterparty Address + IPFS Hash + Block Number Agreement Proposed In
+  function getMessageHash(address _initiator, address _counterparty, string memory _ipfsHash, uint256 _blockNum) internal pure returns (bytes32) {
+    return keccak256(abi.encodePacked(_initiator, _counterparty, _ipfsHash, _blockNum));
   }
 
   /* Hash all relevant contract data
@@ -149,15 +196,6 @@ contract TwoPartyContract {
     return contractHash;
   }
 
-  // Execite contract called once last signature is captured
-  function executeContract(bytes32 _contractHash) internal validParty(_contractHash) notExecuted(_contractHash) returns (bool) {
-    // Double check all signatures are valid
-    require(verifyAllSignatures(_contractHash));
-    contracts[_contractHash].blockExecuted = block.number;
-    emit ContractExecuted(_contractHash, block.number);
-    return true;
-  }
-
   /******************************************
                PUBLIC FUNCTIONS
   ******************************************/
@@ -170,7 +208,10 @@ contract TwoPartyContract {
     address _counterparty,
     string memory _counterpartyName,
     string memory _ipfsHash
-  ) public notCreated(_counterparty, _ipfsHash) returns (bytes32) {
+  ) public payable notCreated(_counterparty, _ipfsHash) returns (bytes32) {
+    // Ensure any create fee is paid
+    require(msg.value >= createFee, "msg.value less than createFee");
+
     // Generate contract hash with msg.sender, counterparty address, ipfs hash, and block number confirmed in
     bytes32 contractHash = hashContract(_counterparty, _ipfsHash, block.number);
 
@@ -179,27 +220,36 @@ contract TwoPartyContract {
     contracts[contractHash].description = _description;
     // Save contract party addresses and names
     contracts[contractHash].initiator = msg.sender;
-    contracts[contractHash].initiator = _name;
+    contracts[contractHash].initiatorName = _name;
     contracts[contractHash].counterparty = _counterparty;
-    contracts[contractHash].counterparty = _counterpartyName;
+    contracts[contractHash].counterpartyName = _counterpartyName;
     // Save contract IPFS hash/pointer
     contracts[contractHash].ipfsHash = _ipfsHash;
     // Save block number agreement proposed in
     contracts[contractHash].blockProposed = block.number;
 
     emit ContractCreated(contractHash, msg.sender, _counterparty, _ipfsHash, block.number);
+    if (createFee > 0) {
+      emit CreateFeePaid(contractHash, msg.sender, msg.value);
+    }
     return contractHash;
   }
 
   // Verify if signature was for messageHash and that the signer is valid, public because interface might want to use this
-  function verifySignature(address _signer, bytes32 _contractHash, bytes memory _signature) public pure returns (bool) {
+  function verifySignature(
+    address _signer,
+    bytes32 _contractHash,
+    bytes memory _signature
+  ) public pure returns (bool) {
     bytes32 ethSignedMessageHash = ECDSA.toEthSignedMessageHash(_contractHash);
     return ECDSA.recover(ethSignedMessageHash, _signature) == _signer;
   }
 
   // Commit signature to blockchain storage after verifying it is correct and that msg.sender hasn't already called signContract()
-  // Consider cleaning function by migrating checks into modifiers
-  function signContract(bytes32 _contractHash, bytes memory _signature) public validParty(_contractHash) notExecuted(_contractHash) {
+  function signContract(bytes32 _contractHash, bytes memory _signature) public payable validParty(_contractHash) notExecuted(_contractHash) {
+    // Ensure any signer fee is paid
+    require(msg.value >= signFee);
+    
     // Confirm signature is valid
     require(verifySignature(msg.sender, _contractHash, _signature), "Signature not valid");
 
@@ -210,9 +260,8 @@ contract TwoPartyContract {
       // Save signature
       contracts[_contractHash].initiatorSig = _signature;
       emit ContractSigned(_contractHash, msg.sender, _signature);
-      // If everyone signed, execute
-      if (verifyAllSignatures(_contractHash)) {
-        contracts[_contractHash].executed = executeContract(_contractHash);
+      if (signFee > 0) {
+        emit SignFeePaid(_contractHash, msg.sender, msg.value);
       }
 
     // Save counterparty signature
@@ -222,9 +271,8 @@ contract TwoPartyContract {
       // Save signature
       contracts[_contractHash].counterpartySig = _signature;
       emit ContractSigned(_contractHash, msg.sender, _signature);
-      // If everyone signed, execute
-      if (verifyAllSignatures(_contractHash)) {
-        contracts[_contractHash].executed = executeContract(_contractHash);
+      if (signFee > 0) {
+        emit SignFeePaid(_contractHash, msg.sender, msg.value);
       }
 
     // Shouldn't ever be hit but will leave anyways
@@ -239,6 +287,22 @@ contract TwoPartyContract {
     bool initiatorSigValid = verifySignature(contracts[_contractHash].initiator, _contractHash, contracts[_contractHash].initiatorSig);
     bool counterpartySigValid = verifySignature(contracts[_contractHash].counterparty, _contractHash, contracts[_contractHash].counterpartySig);
     return (initiatorSigValid == counterpartySigValid);
+  }
+
+  // Execute contract if all have signed and any execute fee paid
+  // Only allows contract parties to execute
+  function executeContract(bytes32 _contractHash) public payable validParty(_contractHash) notExecuted(_contractHash) {
+    // Ensure any execute fee is paid
+    require(msg.value >= executeFee);
+    // Double check all signatures are valid
+    require(verifyAllSignatures(_contractHash));
+    
+    contracts[_contractHash].executed = true;
+    contracts[_contractHash].blockExecuted = block.number;
+    emit ContractExecuted(_contractHash, block.number);
+    if (executeFee > 0) {
+      emit ExecuteFeePaid(_contractHash, msg.sender, msg.value);
+    }
   }
 
   /******************************************
