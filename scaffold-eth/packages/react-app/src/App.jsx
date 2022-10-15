@@ -29,7 +29,7 @@ import externalContracts from "./contracts/external_contracts";
 // contracts
 import deployedContracts from "./contracts/hardhat_contracts.json";
 import { Transactor, Web3ModalSetup } from "./helpers";
-import { Home, ExampleUI, Hints, Subgraph } from "./views";
+import { Home, ExampleUI, IPFSUpload, Hints, Subgraph, Signatory } from "./views";
 import { useStaticJsonRPC } from "./hooks";
 
 const { ethers } = require("ethers");
@@ -293,6 +293,12 @@ function App(props) {
         <Menu.Item key="/debug">
           <Link to="/debug">Debug Contracts</Link>
         </Menu.Item>
+        <Menu.Item key="/ipfs-upload">
+          <Link to="/ipfs-upload">Upload to IPFS</Link>
+        </Menu.Item>
+        <Menu.Item key="/signatory">
+          <Link to="/signatory">Sign contracts</Link>
+        </Menu.Item>
         {/*<Menu.Item key="/hints">
           <Link to="/hints">Hints</Link>
         </Menu.Item>
@@ -312,6 +318,15 @@ function App(props) {
           {/* pass in any web3 props to this Home component. For example, yourLocalBalance */}
           <Home yourLocalBalance={yourLocalBalance} readContracts={readContracts} />
         </Route>
+        <Route exact path="/ipfs-upload">
+          <IPFSUpload/>
+        </Route>        
+        <Route exact path="/signatory">
+          <Signatory
+            signer={userSigner}
+            provider={localProvider}
+          />
+        </Route>     
         <Route exact path="/debug">
           {/*
                 🎛 this scaffolding is full of commonly used components
