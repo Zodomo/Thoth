@@ -200,6 +200,24 @@ contract TwoPartyContract {
     return contractHash;
   }
 
+  // Verify if signature was for messageHash and that the signer is valid, public because interface might want to use this
+  function verifySignature(
+    address _signer,
+    bytes32 _contractHash,
+    bytes memory _signature
+  ) internal pure returns (bool) {
+    bytes32 ethSignedMessageHash = ECDSA.toEthSignedMessageHash(_contractHash);
+    return ECDSA.recover(ethSignedMessageHash, _signature) == _signer;
+  }
+
+  // Created to validate both parties have signed with validated signatures
+  // Will need to be adapted if multi-party signing is ever implemented
+  function verifyAllSignatures(bytes32 _contractHash) internal view returns (bool) {
+    bool initiatorSigValid = verifySignature(contracts[_contractHash].initiator, _contractHash, contracts[_contractHash].initiatorSig);
+    bool counterpartySigValid = verifySignature(contracts[_contractHash].counterparty, _contractHash, contracts[_contractHash].counterpartySig);
+    return (initiatorSigValid == counterpartySigValid);
+  }
+
   /******************************************
                PUBLIC FUNCTIONS
   ******************************************/
@@ -240,16 +258,6 @@ contract TwoPartyContract {
     return contractHash;
   }
 
-  // Verify if signature was for messageHash and that the signer is valid, public because interface might want to use this
-  function verifySignature(
-    address _signer,
-    bytes32 _contractHash,
-    bytes memory _signature
-  ) public pure returns (bool) {
-    bytes32 ethSignedMessageHash = ECDSA.toEthSignedMessageHash(_contractHash);
-    return ECDSA.recover(ethSignedMessageHash, _signature) == _signer;
-  }
-
   // Commit signature to blockchain storage after verifying it is correct and that msg.sender hasn't already called signContract()
   function signContract(bytes32 _contractHash, bytes memory _signature) public payable validParty(_contractHash) notExecuted(_contractHash) {
     // Ensure any signer fee is paid
@@ -285,14 +293,6 @@ contract TwoPartyContract {
     } else {
       revert("Not a contract party");
     }
-  }
-
-  // Created to validate both parties have signed with validated signatures
-  // Will need to be adapted if multi-party signing is ever implemented
-  function verifyAllSignatures(bytes32 _contractHash) public view returns (bool) {
-    bool initiatorSigValid = verifySignature(contracts[_contractHash].initiator, _contractHash, contracts[_contractHash].initiatorSig);
-    bool counterpartySigValid = verifySignature(contracts[_contractHash].counterparty, _contractHash, contracts[_contractHash].counterpartySig);
-    return (initiatorSigValid == counterpartySigValid);
   }
 
   // Execute contract if all have signed and any execute fee paid
