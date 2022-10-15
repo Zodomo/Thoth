@@ -34,18 +34,19 @@ contract TwoPartyContract {
     bool executed;
     bytes initiatorSig;
     bytes counterpartySig;
-    uint256 createFeePaid;
-    uint256 signFeePaid;
-    uint256 executeFeePaid;
+    Fees paidFees;
   }
 
   // Store contract structs in mapping paired to contract hash
   mapping(bytes32 => Contract) public contracts;
 
-  // Data structures used by fee mechanisms
-  uint256 createFee; // Create fee fee in USD ($1.00 = 1 * 10**18)
-  uint256 signFee; // Signer fee in USD ($1.00 = 1 * 10**18)
-  uint256 executeFee; // Executor fee in USD ($1.00 = 1 * 10**18)
+  // Data structures used by fee mechanisms, also used to track fees paid for each contract
+  struct Fees {
+    uint256 createFee; // Create fee fee in USD ($1.00 = 1 * 10**18)
+    uint256 signFee; // Signer fee in USD ($1.00 = 1 * 10**18)
+    uint256 executeFee; // Executor fee in USD ($1.00 = 1 * 10**18)
+  }
+  Fees public fees;
 
   /******************************************
                     EVENTS
@@ -84,9 +85,12 @@ contract TwoPartyContract {
                   CONSTRUCTOR
   ******************************************/
 
-  // what should we do on deploy?
+  // Set owners and fees at deployment
   constructor() {
     owners[payable(msg.sender)] = true;
+    fees.createFee = 0;
+    fees.signFee = 0;
+    fees.executeFee = 0;
   }
 
   /******************************************
@@ -147,25 +151,25 @@ contract TwoPartyContract {
 
   // Set create fee
   function setCreateFee(uint256 _fee) public onlyOwner {
-    createFee = _fee;
+    fees.createFee = _fee;
     emit CreateFeeChanged(_fee);
   }
 
   // Set sign fee
   function setSignFee(uint256 _fee) public onlyOwner {
-    signFee = _fee;
+    fees.signFee = _fee;
     emit SignFeeChanged(_fee);
   }
 
   // Set execute fee
   function setExecuteFee(uint256 _fee) public onlyOwner {
-    executeFee = _fee;
+    fees.executeFee = _fee;
     emit ExecuteFeeChanged(_fee);
   }
 
   // Clear all fees at once
   function clearFees() public onlyOwner {
-    createFee = signFee = executeFee = 0;
+    fees.createFee = fees.signFee = fees.executeFee = 0;
     emit FeesCleared();
   }
 
@@ -210,7 +214,7 @@ contract TwoPartyContract {
     string memory _ipfsHash
   ) public payable notCreated(_counterparty, _ipfsHash) returns (bytes32) {
     // Ensure any create fee is paid
-    require(msg.value >= createFee, "msg.value less than createFee");
+    require(msg.value >= fees.createFee, "msg.value less than createFee");
 
     // Generate contract hash with msg.sender, counterparty address, ipfs hash, and block number confirmed in
     bytes32 contractHash = hashContract(_counterparty, _ipfsHash, block.number);
@@ -229,7 +233,8 @@ contract TwoPartyContract {
     contracts[contractHash].blockProposed = block.number;
 
     emit ContractCreated(contractHash, msg.sender, _counterparty, _ipfsHash, block.number);
-    if (createFee > 0) {
+    if (fees.createFee > 0) {
+      contracts[contractHash].paidFees.createFee = msg.value;
       emit CreateFeePaid(contractHash, msg.sender, msg.value);
     }
     return contractHash;
@@ -248,8 +253,7 @@ contract TwoPartyContract {
   // Commit signature to blockchain storage after verifying it is correct and that msg.sender hasn't already called signContract()
   function signContract(bytes32 _contractHash, bytes memory _signature) public payable validParty(_contractHash) notExecuted(_contractHash) {
     // Ensure any signer fee is paid
-    require(msg.value >= signFee);
-    
+    require(msg.value >= fees.signFee);
     // Confirm signature is valid
     require(verifySignature(msg.sender, _contractHash, _signature), "Signature not valid");
 
@@ -260,7 +264,8 @@ contract TwoPartyContract {
       // Save signature
       contracts[_contractHash].initiatorSig = _signature;
       emit ContractSigned(_contractHash, msg.sender, _signature);
-      if (signFee > 0) {
+      if (fees.signFee > 0) {
+        contracts[_contractHash].paidFees.signFee = msg.value;
         emit SignFeePaid(_contractHash, msg.sender, msg.value);
       }
 
@@ -271,7 +276,8 @@ contract TwoPartyContract {
       // Save signature
       contracts[_contractHash].counterpartySig = _signature;
       emit ContractSigned(_contractHash, msg.sender, _signature);
-      if (signFee > 0) {
+      if (fees.signFee > 0) {
+        contracts[_contractHash].paidFees.signFee = msg.value;
         emit SignFeePaid(_contractHash, msg.sender, msg.value);
       }
 
@@ -293,14 +299,17 @@ contract TwoPartyContract {
   // Only allows contract parties to execute
   function executeContract(bytes32 _contractHash) public payable validParty(_contractHash) notExecuted(_contractHash) {
     // Ensure any execute fee is paid
-    require(msg.value >= executeFee);
+    require(msg.value >= fees.executeFee);
+    // Check if all signatures are received
+    require(contracts[_contractHash].initiatorSig.length > 0 && contracts[_contractHash].counterpartySig.length > 0, "Signature(s) missing");
     // Double check all signatures are valid
     require(verifyAllSignatures(_contractHash));
     
     contracts[_contractHash].executed = true;
     contracts[_contractHash].blockExecuted = block.number;
     emit ContractExecuted(_contractHash, block.number);
-    if (executeFee > 0) {
+    if (fees.executeFee > 0) {
+      contracts[_contractHash].paidFees.executeFee = msg.value;
       emit ExecuteFeePaid(_contractHash, msg.sender, msg.value);
     }
   }

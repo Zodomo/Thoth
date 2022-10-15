@@ -68,7 +68,6 @@ export default function Account({
       {address && (
         <Address address={address} ensProvider={mainnetProvider} blockExplorer={blockExplorer} fontSize={20} />
       )}
-      {/*
       <Balance address={address} provider={localProvider} price={price} size={20} />
       {!isContract && (
         <Wallet
@@ -81,7 +80,6 @@ export default function Account({
           size={22}
           padding={"0px"}
         />
-        */}
       )}
     </span>
   );
