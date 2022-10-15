@@ -22,7 +22,7 @@ const { isAddress, getAddress, formatUnits, parseUnits } = utils;
 //
 // Select the network you want to deploy to here:
 //
-const defaultNetwork = "goerli";
+const defaultNetwork = "cantoMainnet";
 
 function mnemonic() {
   try {
@@ -277,16 +277,16 @@ module.exports = {
         mnemonic: mnemonic(),
       },
     },
-    cantoTestnet: {
-      url: "https://eth.plexnode.wtf",
-      chainId: 740,
+    cantoMainnet: {
+      url: "https://canto.slingshot.finance",
+      chainId: 7700,
       accounts: {
         mnemonic: mnemonic(),
       },
     },
-    cantoMainnet: {
-      url: "https://canto.evm.chandrastation.com",
-      chainId: 7700,
+    cantoTestnet: {
+      url: "https://eth.plexnode.wtf",
+      chainId: 740,
       accounts: {
         mnemonic: mnemonic(),
       },

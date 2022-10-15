@@ -226,17 +226,17 @@ export const NETWORKS = {
     blockExplorer: "https://moonbeam-explorer.netlify.app/",
     rpcUrl: "http://127.0.0.1:9933",
   },
-  cantoTestnet: {
-    name: "cantoTestnet",
-    chainId: 7700,
-    blockExplorer: "https://evm.explorer.canto-testnet.com/",
-    rpcUrl: "https://eth.plexnode.wtf/",
-  },
   cantoMainnet: {
     name: "cantoMainnet",
     chainId: 7700,
     blockExplorer: "https://evm.explorer.canto.io/",
-    rpcUrl: "https://canto.evm.chandrastation.com/",
+    rpcUrl: "https://canto.slingshot.finance",
+  },
+  cantoTestnet: {
+    name: "cantoTestnet",
+    chainId: 740,
+    blockExplorer: "https://evm.explorer.canto-testnet.com/",
+    rpcUrl: "https://eth.plexnode.wtf",
   },
 };
 

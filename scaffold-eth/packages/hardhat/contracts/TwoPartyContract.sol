@@ -179,6 +179,11 @@ contract TwoPartyContract {
               INTERNAL FUNCTIONS
   ******************************************/
 
+  // Use DEX liquidity to determine on-chain price of native token in USD to calculate fee in USD
+  function getPrice() internal view {
+    
+  }
+
   // Hash of: Initiator Address + Counterparty Address + IPFS Hash + Block Number Agreement Proposed In
   function getMessageHash(address _initiator, address _counterparty, string memory _ipfsHash, uint256 _blockNum) internal pure returns (bytes32) {
     return keccak256(abi.encodePacked(_initiator, _counterparty, _ipfsHash, _blockNum));
