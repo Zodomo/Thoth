@@ -54,6 +54,8 @@ contract TwoPartyContract {
 
   // Log when new owners are added
   event OwnerAdded(address indexed owner);
+  // Log when withdrawals happen
+  event Withdrawal(address indexed withdrawer, uint256 withdrawal);
 
   // Log contract hash, initiator address, counterparty address, ipfsHash/Pointer string, and blockNumber agreement is in
   // counterparty is the only unindexed parameter because EVM only allows for three and I found counterparty to be the least relevant
@@ -322,6 +324,7 @@ contract TwoPartyContract {
   function withdraw() public onlyOwner {
     (bool success, ) = msg.sender.call{value: address(this).balance}("");
     require(success);
+    emit Withdrawal(msg.sender, address(this).balance);
   }
   receive() external payable {}
   fallback() external payable {}
