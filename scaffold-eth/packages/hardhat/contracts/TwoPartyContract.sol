@@ -1,6 +1,8 @@
 // SPDX-License-Identifier: GPL-3.0
 pragma solidity >=0.8.0 <0.9.0;
 
+import "@openzeppelin/contracts/utils/cryptography/ECDSA.sol";
+
 contract TwoPartyContract {
   /******************************************
                DATA STRUCTURES
@@ -121,31 +123,6 @@ contract TwoPartyContract {
     return keccak256(abi.encodePacked(_party1, _party2, _ipfsHash, _blockNum));
   }
 
-  // Ethereum signed message has following format:
-  // "\x19Ethereum Signed Message\n" + len(msg) + msg
-  function getEthSignedMessageHash(bytes32 _messageHash) internal pure returns (bytes32) {
-    return keccak256(abi.encodePacked("\x19Ethereum Signed Message:\n32", _messageHash));
-  }
-
-  // Split signature into (r, s, v) components so ecrecover() can determine signer
-  function splitSignature(bytes memory _signature) internal pure returns (bytes32 r, bytes32 s, uint8 v) {
-    require(_signature.length == 65, "Invalid signture length");
-    assembly {
-      // mload(p) loads next 32 bytes starting at memory address p into memory
-      // First 32 bytes of signature stores the length of the signature and can be ignored
-      r := mload(add(_signature, 32)) // r stores first 32 bytes after the length prefix (0-31)
-      s := mload(add(_signature, 64)) // s stores the next 32 bytes after r
-      v := byte(0, mload(add(_signature, 96))) // v stores the final byte (as signatures are 65 bytes total)
-    }
-    // assembly implicitly returns (r, s, v)
-  }
-
-  // Recover signer address for split signature
-  function recoverSigner(bytes32 _ethSignedMessageHash, bytes memory _signature) internal pure returns (address) {
-    (bytes32 r, bytes32 s, uint8 v) = splitSignature(_signature);
-    return ecrecover(_ethSignedMessageHash, v, r, s); // Recovers original signer from _ethSignedMessageHash and post-split _signature
-  }
-
   /* Hash all relevant contract data
      We prevent _counterparty from hashing because switching party address order will change hash 
      The contract hash is what each party needs to sign */
@@ -197,8 +174,8 @@ contract TwoPartyContract {
 
   // Verify if signature was for messageHash and that the signer is valid, public because interface might want to use this
   function verifySignature(address _signer, bytes32 _contractHash, bytes memory _signature) public pure returns (bool) {
-    bytes32 ethSignedMessageHash = getEthSignedMessageHash(_contractHash);
-    return recoverSigner(ethSignedMessageHash, _signature) == _signer;
+    bytes32 ethSignedMessageHash = ECDSA.toEthSignedMessageHash(_contractHash);
+    return ECDSA.recover(ethSignedMessageHash, _signature) == _signer;
   }
 
   // Commit signature to blockchain storage after verifying it is correct and that msg.sender hasn't already called signContract()
@@ -243,12 +220,6 @@ contract TwoPartyContract {
     bool initiatorSigValid = verifySignature(contracts[_contractHash].initiator, _contractHash, contracts[_contractHash].initiatorSig);
     bool counterpartySigValid = verifySignature(contracts[_contractHash].counterparty, _contractHash, contracts[_contractHash].counterpartySig);
     return (initiatorSigValid == counterpartySigValid);
-  }
-
-  // Return all contract data using just the _contractHash, returning struct composition required due to stack limitations
-  // Might be useful for frontend
-  function getContractData(bytes32 _contractHash) public view returns (Contract memory) {
-    return (contracts[_contractHash]);
   }
 
   /******************************************
