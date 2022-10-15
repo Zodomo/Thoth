@@ -277,8 +277,15 @@ module.exports = {
         mnemonic: mnemonic(),
       },
     },
+    cantoTestnet: {
+      url: "https://eth.plexnode.wtf",
+      chainId: 740,
+      accounts: {
+        mnemonic: mnemonic(),
+      },
+    },
     cantoMainnet: {
-      url: "https://jsonrpc.canto.nodestake.top",
+      url: "https://canto.evm.chandrastation.com",
       chainId: 7700,
       accounts: {
         mnemonic: mnemonic(),
