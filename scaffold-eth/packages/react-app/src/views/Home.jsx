@@ -1,7 +1,56 @@
-import { useContractReader } from "eth-hooks";
 import { ethers } from "ethers";
-import React from "react";
+import React, { useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import { useEventListener } from "eth-hooks/events/useEventListener";
+import { INFURA_ID, NETWORKS } from "../constants";
+import { List } from "antd";
+import { Address, AddressInput, BytesStringInput } from "../components";
+import { create as ipfsHttpClient } from "ipfs-http-client";
+
+// 😬 Sorry for all the console logging
+const DEBUG = true;
+
+/// 📡 What chain are your contracts deployed to?
+const targetNetwork = NETWORKS.goerli; // <------- select your target frontend network (localhost, rinkeby, xdai, mainnet)
+
+// 🏠 Your local provider is usually pointed at your local blockchain
+const localProviderUrl = targetNetwork.rpcUrl;
+// as you deploy to other networks you can set REACT_APP_PROVIDER=https://dai.poa.network in packages/react-app/.env
+const localProviderUrlFromEnv = process.env.REACT_APP_PROVIDER ? process.env.REACT_APP_PROVIDER : localProviderUrl;
+if (DEBUG) console.log("🏠 Connecting to provider:", localProviderUrlFromEnv);
+const localProvider = new ethers.providers.StaticJsonRpcProvider(localProviderUrlFromEnv);
+
+// 🛰 providers
+if (DEBUG) console.log("📡 Connecting to Mainnet Ethereum");
+// const mainnetProvider = getDefaultProvider("mainnet", { infura: INFURA_ID, etherscan: ETHERSCAN_KEY, quorum: 1 });
+// const mainnetProvider = new InfuraProvider("mainnet",INFURA_ID);
+//
+// attempt to connect to our own scaffold eth rpc and if that fails fall back to infura...
+// Using StaticJsonRpcProvider as the chainId won't change see https://github.com/ethers-io/ethers.js/issues/901
+const scaffoldEthProvider = navigator.onLine
+  ? new ethers.providers.StaticJsonRpcProvider("https://rpc.scaffoldeth.io:48544")
+  : null;
+const poktMainnetProvider = navigator.onLine
+  ? new ethers.providers.StaticJsonRpcProvider(
+      "https://eth-mainnet.gateway.pokt.network/v1/lb/611156b4a585a20035148406",
+    )
+  : null;
+const mainnetInfura = navigator.onLine
+  ? new ethers.providers.StaticJsonRpcProvider("https://mainnet.infura.io/v3/" + INFURA_ID)
+  : null;
+// ( ⚠️ Getting "failed to meet quorum" errors? Check your INFURA_ID
+
+// IPFS stuff
+const projectId = "projectId";
+const projectSecret = "projectSecret";
+const authorization = "Basic " + btoa(projectId + ":" + projectSecret);
+
+const ipfs = ipfsHttpClient({
+  url: "https://ipfs.infura.io:5001/api/v0",
+  headers: {
+    authorization
+  }
+})
 
 /**
  * web3 props can be passed from '../App.jsx' into your local view component for use
@@ -10,12 +59,118 @@ import { Link } from "react-router-dom";
  * @returns react component
  **/
 function Home({ yourLocalBalance, readContracts }) {
+  const mainnetProvider =
+    poktMainnetProvider && poktMainnetProvider._isProvider
+      ? poktMainnetProvider
+      : scaffoldEthProvider && scaffoldEthProvider._network
+      ? scaffoldEthProvider
+      : mainnetInfura;
   // you can also use hooks locally in your component of choice
-  // in this case, let's keep track of 'purpose' variable from our contract
-  const purpose = useContractReader(readContracts, "TwoPartyContract", "purpose");
 
+  const [injectedProvider, setInjectedProvider] = useState();
+  const [address, setAddress] = useState();
+
+  // Events
+  const contractCreatedEvents = useEventListener(readContracts, "TwoPartyContract", "ContractCreated", localProvider, 1);
+  console.log("📟 contractCreatedEvents:", contractCreatedEvents);
+
+  const contractSignedEvents = useEventListener(readContracts, "TwoPartyContract", "ContractSigned", localProvider, 1);
+  console.log("📟 contractSignedEvents:", contractSignedEvents);
+
+  const contractExecutedEvents = useEventListener(readContracts, "TwoPartyContract", "ContractExecuted", localProvider, 1);
+  console.log("📟 contractExecutedEvents:", contractExecutedEvents);
+  
   return (
     <div>
+      <div style={{ width: 500, margin: "auto", marginTop: 24, fontSize: 24 }}>
+        <b>Create your Contract</b>
+      </div>
+      <div style={{ width: 500, margin: "auto", marginTop: 24 }}>
+        Your Name: <BytesStringInput autoFocus placeholder="Enter your name" />
+      </div>
+      <div style={{ width: 500, margin: "auto", marginTop: 8 }}>
+        Contract Name/Description: <BytesStringInput autoFocus placeholder="Enter contract name/description" />
+      </div>
+      <div style={{ width: 500, margin: "auto", marginTop: 8 }}>
+        Counterparty Address: <AddressInput autoFocus ensProvider={mainnetProvider} placeholder="Enter counterparty address" />
+      </div>
+      <div style={{ width: 500, margin: "auto", marginTop: 8 }}>
+        Counterparty Name: <BytesStringInput autoFocus placeholder="Enter counterparty name" />
+      </div>
+      <div style={{ width: 500, margin: "auto", marginTop: 8 }}>
+        <div><b>This entire section should technically take document upload and pass the IPFS path to the createTwoPartyContract() function behind the scenes</b></div>
+        IPFS Path: <BytesStringInput autoFocus placeholder="Enter IPFS path" />
+      </div>
+      <div style={{ width: 500, margin: "auto", marginTop: 24 }}>
+        <b>Place button that calls createTwoPartyContract() with the above data here</b>
+      </div>
+      <div style={{ width: 500, margin: "auto", marginTop: 32 }}>
+        <div>Contract Created Events:</div>
+        <List
+          dataSource={contractCreatedEvents}
+          renderItem={item => {
+            return (
+              <List.Item key={item.blockNumber + item.blockHash}>
+                <Address value={item.args[1]} ensProvider={mainnetProvider} fontSize={16} /> created contract {item.args[0]} 
+                {" "} with <Address value={item.args[2]} ensProvider={mainnetProvider} fontSize={16} /> in block {item.blockNumber}
+              </List.Item>
+            );
+          }}
+        />
+      </div>
+
+      <div style={{ width: 500, margin: "auto", marginTop: 24, fontSize: 24 }}>
+        <b>Sign your Contract</b>
+      </div>
+      <div style={{ width: 500, margin: "auto", marginTop: 24 }}>
+        <div><b>This section should iterate through relatedContracts[connected address] to pull up any hashes for contracts that haven't been signed yet</b></div>
+        Contract Hash: <BytesStringInput autoFocus placeholder="Enter contract hash" />
+        Signature: <BytesStringInput autoFocus placeholder="Enter signature" />
+      </div>
+      <div style={{ width: 500, margin: "auto", marginTop: 24 }}>
+        <b>Place button that calls signContract() with the above data here</b>
+      </div>
+      <div style={{ width: 500, margin: "auto", marginTop: 32 }}>
+        <div>Contract Signed Events:</div>
+        <List
+          dataSource={contractSignedEvents}
+          renderItem={item => {
+            return (
+              <List.Item key={item.blockNumber + item.blockHash}>
+                <Address value={item.args[1]} ensProvider={mainnetProvider} fontSize={16} /> signed contract {item.args[0]} 
+                {" "} in block {item.blockNumber}
+              </List.Item>
+            );
+          }}
+        />
+      </div>
+
+      <div style={{ width: 500, margin: "auto", marginTop: 24, fontSize: 24 }}>
+        <b>Execute your Contract</b>
+      </div>
+      <div style={{ width: 500, margin: "auto", marginTop: 24 }}>
+        <div><b>This section should iterate through relatedContracts[connected address] to 
+          display all contracts with all required signatures and an Execute button next 
+          to each. Displaying contract description instead of hash would be best</b></div>
+        Contract Hash: <BytesStringInput autoFocus placeholder="Enter contract hash" />
+      </div>
+      <div style={{ width: 500, margin: "auto", marginTop: 24 }}>
+        <b>Place button that calls executeContract() with the above data here</b>
+      </div>
+      <div style={{ width: 500, margin: "auto", marginTop: 32 }}>
+        <div>Contract Executed Events:</div>
+        <List
+          dataSource={contractExecutedEvents}
+          renderItem={item => {
+            return (
+              <List.Item key={item.blockNumber + item.blockHash}>
+                <Address value={item.args[1]} ensProvider={mainnetProvider} fontSize={16} /> executed contract {item.args[0]} 
+                {" "} in block {item.blockNumber}
+              </List.Item>
+            );
+          }}
+        />
+      </div>
       <div style={{ margin: 32 }}>
         This is the Thoth frontend.
       </div>

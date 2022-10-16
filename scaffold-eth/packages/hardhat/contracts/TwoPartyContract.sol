@@ -60,17 +60,17 @@ contract TwoPartyContract {
   // Log contract hash, initiator address, counterparty address, ipfsHash/Pointer string, and blockNumber agreement is in
   // counterparty is the only unindexed parameter because EVM only allows for three and I found counterparty to be the least relevant
   event ContractCreated(
-    bytes32 indexed contractHash,
+    bytes32 contractHash,
     address initiator,
     address counterparty,
-    string indexed ipfsHash,
-    uint256 indexed blockNumber);
+    string ipfsHash,
+    uint256 blockNumber);
   // Log contract hashes on their own as all contrct details in ContractCreated can be obtianed by querying granular contract data mappings (contractParties, ...)
   event ContractHashed(bytes32 indexed contractHash);
   // Log contract signatures, contractHash used in verification, and the signer address to validate against
   event ContractSigned(bytes32 indexed contractHash, address indexed signer, bytes indexed signature);
   // Log contract execution using hash and the block it executed in
-  event ContractExecuted(bytes32 indexed contractHash, uint256 indexed blockNumber);
+  event ContractExecuted(bytes32 indexed contractHash, address indexed executor, uint256 indexed blockNumber);
   
   // Log when any fee is paid
   event CreateFeePaid(bytes32 indexed contractHash, address indexed payer, uint256 fee);
@@ -233,7 +233,7 @@ contract TwoPartyContract {
   // notCreated() prevents duplicate calls from msg.sender or the counterparty by checking for existence of contract hash
   function createTwoPartyContract(
     string memory _description,
-    string memory _name,
+    string memory _signerName,
     address _counterparty,
     string memory _counterpartyName,
     string memory _ipfsHash
@@ -249,7 +249,7 @@ contract TwoPartyContract {
     contracts[contractHash].description = _description;
     // Save contract party addresses and names
     contracts[contractHash].initiator = msg.sender;
-    contracts[contractHash].initiatorName = _name;
+    contracts[contractHash].initiatorName = _signerName;
     contracts[contractHash].counterparty = _counterparty;
     contracts[contractHash].counterpartyName = _counterpartyName;
     // Save contract IPFS hash/pointer
@@ -314,7 +314,7 @@ contract TwoPartyContract {
     
     contracts[_contractHash].executed = true;
     contracts[_contractHash].blockExecuted = block.number;
-    emit ContractExecuted(_contractHash, block.number);
+    emit ContractExecuted(_contractHash, msg.sender, block.number);
     if (fees.executeFee > 0) {
       contracts[_contractHash].paidFees.executeFee = msg.value;
       emit ExecuteFeePaid(_contractHash, msg.sender, msg.value);
