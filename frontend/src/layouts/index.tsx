@@ -21,7 +21,7 @@ const Layout = ({ title, description, children }: Props) => {
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
         <link rel="manifest" href="/site.webmanifest"></link>
       </Head>
-      <div className="">
+      <div className="bg-brand-600 min-h-screen">
         <Header />
         {children}
       </div>
