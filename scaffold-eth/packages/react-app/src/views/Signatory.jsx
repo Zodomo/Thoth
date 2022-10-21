@@ -20,10 +20,10 @@ export default function Signatory() {
         const provider = new ethers.providers.Web3Provider(window.ethereum);
         const signer = provider.getSigner();
   
-        const signature = await signer.signMessage(message);
-
         const address = await signer.getAddress();
-    
+
+        const signature = await provider.send("personal_sign", [message, address]);
+  
         return {
           message,
           signature,
