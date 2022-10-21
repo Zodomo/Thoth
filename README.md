@@ -27,8 +27,8 @@ THOTH's development front-end is available at <i>https://zodomo-thoth.surge.sh/<
 
 THOTH is a product produced for the Canto Online Hackathon Chapter 1 Season 1 
 (<i>https://github.com/the-COH/chapter_1_season_1<i/>) by the following contributors:
-- Zodomo <i>(https://github.com/Zodomo<i/>
-- Shiv (<i>https://github.com/nerderlyne<i/>
+- Zodomo <i>(https://github.com/Zodomo<i/>)
+- Shiv (<i>https://github.com/nerderlyne<i/>)
 - Thomas Bush (<i>https://github.com/tster<i/>)
 - Geoff Costeloe (<i>https://github.com/Karotoka<i/>) via Entrypoint Solutions Ltd., a 
 registered British Columbia corporation.
