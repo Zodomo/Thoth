@@ -22,8 +22,8 @@ Once all parties sign, the agreement is fully executed and is marked as such on 
 <b>THOTH and its developers can provide no legal advice or opinions as to the legality of any contracts 
   agreed to and executed on THOTH. Use of and reliance of THOTH is entirely at the user's risk.</b>
 
-THOTH's development front-end is available at <i>https://zodomo-thoth.surge.sh/ <i/> or 
-<i>https://thoth-ui.vercel.app/<i/> depending on our mood.
+THOTH's development front-end is available at <i>https://zodomo-thoth.surge.sh/ </i> or 
+<i>https://thoth-ui.vercel.app/</i> depending on our mood.
 
 THOTH is a product produced for the Canto Online Hackathon Chapter 1 Season 1 
 (<i>https://github.com/the-COH/chapter_1_season_1<i/>) by the following contributors:
