@@ -6,7 +6,6 @@
 
 \\\\\WHAT IS THOTH?\\\\\
 
-
 THOTH is crypto's first protocol that utilizes the internal cryptography in Ethereum's VM to bind 
 real world parties to legally binding agreements. Launched initially on CANTO thanks to the CANTO 
 Hackathon, THOTH allows two (or more) parties to bind themselves into a legal agreement that includes
@@ -23,4 +22,13 @@ Once all parties sign, the agreement is fully executed and is marked as such on 
 <b>THOTH and its developers can provide no legal advice or opinions as to the legality of any contracts 
   agreed to and executed on THOTH. Use of and reliance of THOTH is entirely at the user's risk.</b>
 
-THOTH's development front-end is available at <i>https://zodomo-thoth.surge.sh/<i/>
+THOTH's development front-end is available at <i>https://zodomo-thoth.surge.sh/<i/> or 
+<i>https://thoth-ui.vercel.app/<i/> depending on our mood.
+
+THOTH is a product produced for the Canto Online Hackathon Chapter 1 Season 1 
+(<i>https://github.com/the-COH/chapter_1_season_1<i/>) by the following contributors:
+- Zodomo <i>(https://github.com/Zodomo<i/>
+- Shiv (<i>https://github.com/nerderlyne<i/>
+- Thomas Bush (<i>https://github.com/tster<i/>)
+- Geoff Costeloe (<i>https://github.com/Karotoka<i/>) via Entrypoint Solutions Ltd., a 
+registered British Columbia corporation.
